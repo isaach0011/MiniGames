@@ -1,3 +1,5 @@
+// DO NOT EDIT OR DELETE. This file is used as a Template for a panel so I can be lazy 
+// and not copy everything again.
 package games.view;
 
 import javax.swing.*;
@@ -6,12 +8,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 
-public class GamesPanel extends JPanel
+public class PanelTemplate extends JPanel
 {
 	private GamesController baseController;
 	private SpringLayout baseLayout;
 	
-	public GamesPanel(GamesController baseController)
+	public PanelTemplate(GamesController baseController)
 	{
 		super();
 		this.baseController = baseController;
@@ -26,7 +28,7 @@ public class GamesPanel extends JPanel
 	{
 		this.setLayout(baseLayout);
 		this.setPreferredSize(new Dimension(900,600));
-		this.setBackground(Color.white);
+		this.setBackground(Color.gray);
 	}
 	
 	public void setupLayout()

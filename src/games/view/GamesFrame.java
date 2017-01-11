@@ -7,13 +7,13 @@ import java.awt.Dimension;
 public class GamesFrame extends JFrame
 {
 	private GamesController baseController;
-	private GamesPanel basePanel;
+	private MenuPanel basePanel;
 	
 	public GamesFrame(GamesController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		basePanel = new GamesPanel(baseController);
+		basePanel = new MenuPanel(baseController);
 		setupFrame();
 	}
 	
@@ -24,5 +24,6 @@ public class GamesFrame extends JFrame
 		this.setSize(new Dimension(900,600));
 		this.setResizable(false);
 		this.setVisible(true);
+		
 	}
 }
