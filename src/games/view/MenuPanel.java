@@ -75,5 +75,13 @@ public class MenuPanel extends JPanel
 				gamesFrame.switchScreenToGames();
 			}			
 		});
+		
+		quitButton.addActionListener(new ActionListener()
+		{		
+			public void actionPerformed(ActionEvent click)
+			{
+				System.exit(0);
+			}			
+		});
 	}
 }
