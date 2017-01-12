@@ -67,6 +67,13 @@ public class MenuPanel extends JPanel
 	
 	public void setupListeners()
 	{
-		
+		goToGamesButton.addActionListener(new ActionListener()
+		{		
+			public void actionPerformed(ActionEvent click)
+			{
+				GamesFrame gamesFrame = new GamesFrame(baseController);
+				gamesFrame.switchScreenToGames();
+			}			
+		});
 	}
 }
