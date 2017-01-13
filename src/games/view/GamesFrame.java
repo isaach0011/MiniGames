@@ -7,6 +7,7 @@ import java.awt.Dimension;
 public class GamesFrame extends JFrame
 {
 	private GamesController baseController;
+	private GamesFrame baseFrame;
 	private MenuPanel basePanel;
 	private GamesPanel gamesPanel;
 	
@@ -28,6 +29,11 @@ public class GamesFrame extends JFrame
 		this.setVisible(true);	
 	}
 
+	public GamesFrame getGamesFrame()
+	{
+		return baseFrame;
+	}
+	
 	public MenuPanel getBasePanel()
 	{
 		return basePanel;
@@ -51,5 +57,12 @@ public class GamesFrame extends JFrame
 	public void switchScreenToGames()
 	{
 		this.setContentPane(gamesPanel);
+		this.validate();
+		this.repaint();
+	}
+	
+	public void returnContentPane()
+	{
+		this.getContentPane();
 	}
 }

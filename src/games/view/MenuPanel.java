@@ -10,6 +10,8 @@ import java.awt.Font;
 public class MenuPanel extends JPanel
 {
 	private GamesController baseController;
+	private GamesPanel gamesPanel;
+	private GamesFrame baseFrame;
 	private SpringLayout baseLayout;
 	//private ImageIcon titlePicture;
 	private ImageIcon settingsIcon;
@@ -23,6 +25,7 @@ public class MenuPanel extends JPanel
 	{
 		super();
 		this.baseController = baseController;
+		this.baseFrame = new GamesFrame(baseController);
 		this.baseLayout = new SpringLayout();
 		//this.titlePicture = new ImageIcon(getClass().getResource("images/ .png"));
 		this.settingsIcon = new ImageIcon(getClass().getResource("images/cog.png"));
@@ -71,8 +74,7 @@ public class MenuPanel extends JPanel
 		{		
 			public void actionPerformed(ActionEvent click)
 			{
-				GamesFrame gamesFrame = new GamesFrame(baseController);
-				gamesFrame.switchScreenToGames();
+				baseFrame.returnContentPane();
 			}			
 		});
 		
