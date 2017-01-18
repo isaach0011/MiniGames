@@ -11,6 +11,7 @@ import java.awt.event.*;
 public class PanelTemplate extends JPanel
 {
 	private GamesController baseController;
+	private GamesFrame baseFrame;
 	private SpringLayout baseLayout;
 	
 	public PanelTemplate(GamesController baseController)

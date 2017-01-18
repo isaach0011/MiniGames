@@ -61,7 +61,8 @@ public class GamesPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				baseFrame = baseController.getBaseFrame();
+				baseFrame.swtichScreenToHangman();
 			}
 		});
 		
