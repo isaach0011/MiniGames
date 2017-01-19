@@ -9,10 +9,12 @@ import games.view.GamesFrame;
 public class GamesController
 {
 	private GamesFrame baseFrame;
+	private Hangman hangman;
 	
 	public GamesController()
 	{
 		baseFrame = new GamesFrame(this);
+		hangman = new Hangman();
 	}
 	
 	public void start()
@@ -23,5 +25,10 @@ public class GamesController
 	public GamesFrame getBaseFrame()
 	{
 		return baseFrame;
+	}
+	
+	public Hangman getHangman()
+	{
+		return hangman;
 	}
 }
