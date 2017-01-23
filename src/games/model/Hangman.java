@@ -13,7 +13,7 @@ public class Hangman
 	public Hangman()
 	{
 		this.wordList = new ArrayList<String>();
-		this.fileName = "files/words.txt";
+		this.fileName = "/files/words.txt";
 		this.line = null;
 		
 		this.buildWordList();
@@ -47,5 +47,17 @@ public class Hangman
                 "Error reading file '" 
                 + fileName + "'");                  
         }
+	}
+
+
+	public ArrayList<String> getWordList()
+	{
+		return wordList;
+	}
+
+
+	public void setWordList(ArrayList<String> wordList)
+	{
+		this.wordList = wordList;
 	}
 }

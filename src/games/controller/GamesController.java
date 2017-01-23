@@ -19,7 +19,7 @@ public class GamesController
 	
 	public void start()
 	{
-		
+		System.out.println(hangman.getWordList().size());
 	}
 	
 	public GamesFrame getBaseFrame()
