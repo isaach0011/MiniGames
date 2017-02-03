@@ -39,6 +39,13 @@ public class Hangman
 	}
 
 
+	public String getRandomWord()
+	{
+		int wordPosition = (int) (Math.random() * wordList.size());
+		
+		return wordList.get(wordPosition);
+	}
+	
 	public ArrayList<String> getWordList()
 	{
 		return wordList;

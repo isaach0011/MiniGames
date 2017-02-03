@@ -2,6 +2,7 @@ package games.view;
 
 import javax.swing.*;
 import games.controller.GamesController;
+import games.model.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +12,7 @@ public class HangmanPanel extends JPanel
 {
 	private GamesController baseController;
 	private GamesFrame baseFrame;
+	private Hangman hangman;
 	private SpringLayout baseLayout;
 	private ImageIcon gallowsIcon;
 	private JTextArea hangmanDisplay;
@@ -19,11 +21,13 @@ public class HangmanPanel extends JPanel
 	private JButton submitButton;
 	private JLabel gameLabel;
 	private JLabel gallowsLabel;
+	private String word;
 	
 	public HangmanPanel(GamesController baseController)
 	{
 		super();
 		this.baseController = baseController;
+		this.hangman = new Hangman();
 		this.baseLayout = new SpringLayout();
 		//this.gallowsIcon = new ImageIcon(getClass().getResource("images/ .png");
 		this.hangmanDisplay = new JTextArea(5, 25);
@@ -31,12 +35,20 @@ public class HangmanPanel extends JPanel
 		this.exitButton = new JButton("Exit Game");
 		this.submitButton = new JButton("Submit");
 		this.gameLabel = new JLabel("Hangman");
+		this.word = "";
 		//this.gallowsLabel = new JLabel(gallowsIcon);
 		
+		setupHangmanGame();
 		setupHangmanDisplay();
 		setupPanel();
 		setupLayout();
 		setupListeners();
+	}
+	
+	private void setupHangmanGame()
+	{
+		word = hangman.getRandomWord();
+		System.out.println(word);
 	}
 	
 	private void setupHangmanDisplay()
