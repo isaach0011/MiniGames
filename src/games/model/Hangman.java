@@ -1,20 +1,18 @@
 package games.model;
 
 import java.io.*;
-import java.net.URL;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Hangman
 {
 	private ArrayList<String> wordList;
-	private String fileName;
-	private String line;
+	private File file;
 	
 	public Hangman()
 	{
 		this.wordList = new ArrayList<String>();
-		this.fileName = "/files/words.txt";
-		this.line = null;
+		this.file = new File("src/games/model/files/words.txt");
 		
 		this.buildWordList();
 	}
@@ -24,29 +22,20 @@ public class Hangman
 	{
 		try 
 		{
-            FileReader fileReader = new FileReader(fileName);
 
-            BufferedReader bufferedReader = 
-                new BufferedReader(fileReader);
+	        Scanner sc = new Scanner(file);
 
-            while((line = bufferedReader.readLine()) != null) 
-            {
-                wordList.add(line);
-            }   
-            bufferedReader.close();         
-        }
-        catch(FileNotFoundException ex) 
+	        while (sc.hasNextLine()) 
+	        {
+	            String i = sc.nextLine();
+	            wordList.add(i);
+	        }
+	        sc.close();
+	    } 
+	    catch (FileNotFoundException e) 
 		{
-            System.out.println(
-                "Unable to open file '" + 
-                fileName + "'");                
-        }
-        catch(IOException ex) 
-		{
-            System.out.println(
-                "Error reading file '" 
-                + fileName + "'");                  
-        }
+	        e.printStackTrace();
+	    }
 	}
 
 
