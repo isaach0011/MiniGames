@@ -79,6 +79,15 @@ public class MenuPanel extends JPanel
 			}			
 		});
 		
+		goToSettingsButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseFrame = baseController.getBaseFrame();
+				baseFrame.switchScreenToSettings();
+			}
+		});
+		
 		quitButton.addActionListener(new ActionListener()
 		{		
 			public void actionPerformed(ActionEvent click)
