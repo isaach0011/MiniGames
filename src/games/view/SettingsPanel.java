@@ -2,6 +2,7 @@ package games.view;
 
 import javax.swing.*;
 import games.controller.GamesController;
+import games.model.Hangman;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +12,7 @@ public class SettingsPanel extends JPanel
 {
 	private GamesController baseController;
 	private GamesFrame baseFrame;
+	private Hangman hangman;
 	private SpringLayout baseLayout;
 	private JLabel titleLabel;
 	private JLabel hangmanLabel;
@@ -75,6 +77,18 @@ public class SettingsPanel extends JPanel
 	
 	public void setupListeners()
 	{
+		submitButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String newWord = wordInput.getText();
+				
+				hangman = baseController.getHangman();
+				hangman.addWordToFile(newWord);
+				
+				wordInput.setText("");
+			}
+		});
 		backButton.addActionListener(new ActionListener()
 		{		
 			public void actionPerformed(ActionEvent click)

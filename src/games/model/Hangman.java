@@ -48,11 +48,9 @@ public class Hangman
 
 	public void addWordToFile(String word)
 	{
-		baseController = new GamesController();
-		baseFrame = baseController.getBaseFrame();
-
 		wordList.add(word);
-		JOptionPane.showMessageDialog(baseFrame, "Note that the words you add will be deleted after you close this program");
+		System.out.println(word);
+		System.out.println(wordList.size());
 	}
 
 	public String getRandomWord()
