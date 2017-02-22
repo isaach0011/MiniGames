@@ -47,7 +47,7 @@ public class HangmanPanel extends JPanel
 	
 	private void setupHangmanGame()
 	{
-		word = hangman.getRandomWord();
+		word = baseController.getRandomWord();
 		System.out.println(word);
 	}
 	
@@ -99,7 +99,7 @@ public class HangmanPanel extends JPanel
 			{
 				String guessLetter = hangmanInput.getText();
 				//String response = baseController.useCheckers(guessLetter);
-				
+				baseController.checkIfInWord(guessLetter);
 				hangmanInput.setText("");
 			}
 		});
@@ -113,4 +113,6 @@ public class HangmanPanel extends JPanel
 			}
 		});
 	}
+	
+	
 }

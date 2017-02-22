@@ -53,7 +53,7 @@ public class Hangman
 		System.out.println(wordList.size());
 	}
 
-	public String getRandomWord()
+	public String randomWord()
 	{
 		int wordPosition = (int) (Math.random() * wordList.size());
 		
