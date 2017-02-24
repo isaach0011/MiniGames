@@ -2,7 +2,9 @@ package games.view;
 
 import javax.swing.JFrame;
 import games.controller.GamesController;
-import java.awt.Dimension;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class GamesFrame extends JFrame
 {

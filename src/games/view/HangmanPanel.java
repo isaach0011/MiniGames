@@ -6,7 +6,10 @@ import games.model.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.*;
+import java.io.File;
+import java.net.URL;
 
 public class HangmanPanel extends JPanel
 {
@@ -48,7 +51,8 @@ public class HangmanPanel extends JPanel
 	private void setupHangmanGame()
 	{
 		word = baseController.getRandomWord();
-		System.out.println(word);
+		System.out.println(word + " " + word.length());
+		
 	}
 	
 	private void setupHangmanDisplay()
@@ -98,9 +102,17 @@ public class HangmanPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String guessLetter = hangmanInput.getText();
+				if(guessLetter.equals(""))
+				{
+					hangmanInput.setText("");
+					JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
+				}
+				else
+				{
 				//String response = baseController.useCheckers(guessLetter);
-				baseController.checkIfInWord(guessLetter);
-				hangmanInput.setText("");
+					baseController.checkIfInWord(guessLetter);
+					hangmanInput.setText("");
+				}
 			}
 		});
 		

@@ -10,13 +10,16 @@ import java.util.ArrayList;
 public class Hangman
 {
 	private ArrayList<String> wordList;
+	private ArrayList<Integer> correctLetters;
 	private GamesController baseController;
 	private GamesFrame baseFrame;
 	private File file;
+	private String word;
 	
 	public Hangman()
 	{
 		this.wordList = new ArrayList<String>();
+		this.correctLetters = new ArrayList<Integer>();
 		this.file = new File("src/games/model/files/words.txt");
 		this.buildWordList();
 	}
@@ -46,11 +49,21 @@ public class Hangman
 	    }
 	}
 
+	public void buildCorrectLettersList(int position)
+	{
+		correctLetters.add(position);
+		System.out.println(position);
+		System.out.println(correctLetters.size());
+		
+		
+	}
 	public void addWordToFile(String word)
 	{
 		wordList.add(word);
 		System.out.println(word);
 		System.out.println(wordList.size());
+		
+		this.winGame();
 	}
 
 	public String randomWord()
@@ -69,5 +82,13 @@ public class Hangman
 	public void setWordList(ArrayList<String> wordList)
 	{
 		this.wordList = wordList;
+	}
+	
+	public void winGame()
+	{
+		if(word.length() == correctLetters.size())
+		{
+			System.out.println("hey you won good for u man");
+		}
 	}
 }

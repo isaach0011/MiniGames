@@ -13,9 +13,9 @@ public class GamesController
 	private String word;
 	public GamesController()
 	{
-		baseFrame = new GamesFrame(this);
 		hangman = new Hangman();
 		word = hangman.randomWord();
+		baseFrame = new GamesFrame(this);
 	}
 	
 	public void start()
@@ -25,6 +25,8 @@ public class GamesController
 	
 	public boolean checkIfInWord(String guessedLetter)
 	{
+		
+		
 		int position = word.indexOf(guessedLetter);
 		
 		if(position == -1)
@@ -35,6 +37,7 @@ public class GamesController
 		}
 		else
 		{
+			hangman.buildCorrectLettersList(position);
 			return true;
 		}
 	}
