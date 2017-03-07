@@ -86,7 +86,7 @@ public class Hangman
 	
 	public void winGame()
 	{
-		if(word.length() == correctLetters.size())
+		if(correctLetters.size() == word.length())
 		{
 			System.out.println("hey you won good for u man");
 		}

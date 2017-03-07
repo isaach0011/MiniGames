@@ -44,7 +44,7 @@ public class MenuPanel extends JPanel
 		this.setPreferredSize(new Dimension(900,600));
 		this.setBackground(Color.gray);
 		
-		titleLabel.setFont(new Font("Impact", Font.PLAIN, 50));
+		titleLabel.setFont(new Font("BigNoodleTitling", Font.PLAIN, 50));
 		
 		this.add(goToSettingsButton);
 		this.add(quitButton);
@@ -55,8 +55,6 @@ public class MenuPanel extends JPanel
 	
 	public void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.WEST, titleLabel, 202, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, titleLabel, -7, SpringLayout.NORTH, goToGamesButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, goToSettingsButton, -110, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, goToSettingsButton, -110, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, goToSettingsButton, -10, SpringLayout.SOUTH, this);
@@ -65,6 +63,8 @@ public class MenuPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, goToGamesButton, -6, SpringLayout.NORTH, quitButton);
 		baseLayout.putConstraint(SpringLayout.WEST, quitButton, 375, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, quitButton, -369, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, titleLabel, 266, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, titleLabel, -7, SpringLayout.NORTH, goToGamesButton);
 	}
 	
 	public void setupListeners()
