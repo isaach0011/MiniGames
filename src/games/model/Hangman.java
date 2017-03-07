@@ -3,8 +3,6 @@ package games.model;
 import games.controller.*;
 import java.io.*;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
-import games.view.GamesFrame;
 import java.util.ArrayList;
 
 public class Hangman
@@ -12,7 +10,6 @@ public class Hangman
 	private ArrayList<String> wordList;
 	private ArrayList<Integer> correctLetters;
 	private GamesController baseController;
-	private GamesFrame baseFrame;
 	private File file;
 	private String word;
 	
@@ -62,15 +59,27 @@ public class Hangman
 		wordList.add(word);
 		System.out.println(word);
 		System.out.println(wordList.size());
-		
-		this.winGame();
 	}
 
 	public String randomWord()
 	{
 		int wordPosition = (int) (Math.random() * wordList.size());
+		word = wordList.get(wordPosition);
+		return word;
+	}
+	
+	public boolean checkIfInWord(String guessedLetter)
+	{
+		int position = word.indexOf(guessedLetter);
 		
-		return wordList.get(wordPosition);
+		if(position == -1)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	public ArrayList<String> getWordList()
@@ -82,13 +91,5 @@ public class Hangman
 	public void setWordList(ArrayList<String> wordList)
 	{
 		this.wordList = wordList;
-	}
-	
-	public void winGame()
-	{
-		if(correctLetters.size() == word.length())
-		{
-			System.out.println("hey you won good for u man");
-		}
 	}
 }
