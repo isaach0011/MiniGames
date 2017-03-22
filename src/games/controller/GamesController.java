@@ -1,6 +1,5 @@
 package games.controller;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import games.model.*;
 import games.view.GamesFrame;
@@ -25,20 +24,53 @@ public class GamesController
 	
 	public boolean checkIfInWord(String guessedLetter)
 	{
-		
-		
 		int position = word.indexOf(guessedLetter);
 		
 		if(position == -1)
 		{
-			System.out.println("You failed goodbye.");
-			System.exit(0);
 			return false;
 		}
 		else
 		{
-			hangman.buildCorrectLettersList(position);
 			return true;
+		}
+	}
+	
+	public void addLetterToCorrectLetterList(int letterPosition)
+	{
+		hangman.buildCorrectLettersList(letterPosition);
+	}
+	
+	public void addWord(String word)
+	{
+		if(word.contains(" ") || word.contains(".") || word.contains("-") || word.contains(","))
+		{
+			JOptionPane.showMessageDialog(baseFrame, "Please type in a valid word.");
+		}
+		else
+		{
+			hangman.addWordToFile(word);
+			JOptionPane.showMessageDialog(baseFrame, "Added " + word + " to word list.");
+			JOptionPane.showMessageDialog(baseFrame, "Note: All words you add will be deleted after ending the program until next update.");
+		}
+	}
+	
+	public int getLetterPosition(String guessedLetter)
+	{
+		int position = word.indexOf(guessedLetter);
+		
+		return position;
+	}
+	
+	public boolean winTheGame()
+	{
+		if(hangman.winGame() == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	public GamesFrame getBaseFrame()
