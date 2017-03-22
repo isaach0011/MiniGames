@@ -2,38 +2,30 @@ package games.view;
 
 import javax.swing.*;
 import games.controller.GamesController;
-import games.model.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.*;
-import java.io.File;
-import java.net.URL;
 
 public class HangmanPanel extends JPanel
 {
 	private GamesController baseController;
 	private GamesFrame baseFrame;
-	private Hangman hangman;
 	private SpringLayout baseLayout;
-	private ImageIcon gallowsIcon;
-	private JTextArea hangmanDisplay;
+//	private JTextArea hangmanDisplay;
 	private JTextField hangmanInput;
 	private JButton exitButton;
 	private JButton submitButton;
 	private JLabel gameLabel;
-	private JLabel gallowsLabel;
 	private String word;
 	
 	public HangmanPanel(GamesController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		this.hangman = new Hangman();
 		this.baseLayout = new SpringLayout();
 		//this.gallowsIcon = new ImageIcon(getClass().getResource("images/ .png");
-		this.hangmanDisplay = new JTextArea(5, 25);
+//		this.hangmanDisplay = new JTextArea(5, 25);
 		this.hangmanInput = new JTextField(25);
 		this.exitButton = new JButton("Exit Game");
 		this.submitButton = new JButton("Submit");
@@ -57,10 +49,10 @@ public class HangmanPanel extends JPanel
 	
 	private void setupHangmanDisplay()
 	{
-		hangmanDisplay.setEditable(false);
-		hangmanDisplay.setEnabled(false);
-		hangmanDisplay.setLineWrap(true);
-		hangmanDisplay.setWrapStyleWord(true);
+//		hangmanDisplay.setEditable(false);
+//		hangmanDisplay.setEnabled(false);
+//		hangmanDisplay.setLineWrap(true);
+//		hangmanDisplay.setWrapStyleWord(true);
 		
 		
 	}
@@ -73,7 +65,7 @@ public class HangmanPanel extends JPanel
 		
 		gameLabel.setFont(new Font("Impact", Font.PLAIN, 50));
 		
-		this.add(hangmanDisplay);
+//		this.add(hangmanDisplay);
 		this.add(hangmanInput);
 		this.add(exitButton);
 		this.add(gameLabel);
@@ -85,12 +77,12 @@ public class HangmanPanel extends JPanel
 	{
 		baseLayout.putConstraint(SpringLayout.NORTH, gameLabel, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, gameLabel, -316, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, hangmanDisplay, 0, SpringLayout.WEST, exitButton);
+//		baseLayout.putConstraint(SpringLayout.WEST, hangmanDisplay, 0, SpringLayout.WEST, exitButton);
 		baseLayout.putConstraint(SpringLayout.WEST, exitButton, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, exitButton, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, hangmanInput, -75, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, hangmanInput, -244, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, hangmanDisplay, 217, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.NORTH, hangmanDisplay, 217, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, submitButton, 6, SpringLayout.SOUTH, hangmanInput);
 		baseLayout.putConstraint(SpringLayout.EAST, submitButton, -365, SpringLayout.EAST, this);
 	}
@@ -107,12 +99,29 @@ public class HangmanPanel extends JPanel
 					hangmanInput.setText("");
 					JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
 				}
+				else if(guessLetter.length() > 1)
+				{
+					hangmanInput.setText("");
+					JOptionPane.showMessageDialog(baseFrame, "Please type in only ONE letter.");
+				}
 				else
 				{
 				//String response = baseController.useCheckers(guessLetter);
-					baseController.checkIfInWord(guessLetter);
-					hangmanInput.setText("");
+					if(baseController.checkIfInWord(guessLetter))
+					{
+						baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
+						hangmanInput.setText("");
+						if(baseController.winTheGame() == true)
+						{
+							baseFrame.switchScreenToSettings();
+						}
+					}
+					else
+					{
+						//put word in the incorrect text area
+					}
 				}
+				hangmanInput.setText("");
 			}
 		});
 		
@@ -122,6 +131,33 @@ public class HangmanPanel extends JPanel
 			{
 				baseFrame = baseController.getBaseFrame();
 				baseFrame.switchScreenToMenu();
+			}
+		});
+		
+		hangmanInput.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent pressedEnter)
+			{
+				String guessLetter = hangmanInput.getText();
+				if(guessLetter.equals(""))
+				{
+					hangmanInput.setText("");
+					JOptionPane.showMessageDialog(baseFrame, "Please input a letter.");
+				}
+				else
+				{
+				//String response = baseController.useCheckers(guessLetter);
+					if(baseController.checkIfInWord(guessLetter))
+					{
+						baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
+						hangmanInput.setText("");
+					}
+					else
+					{
+						//put word in the incorrect text area
+					}
+				}
+				hangmanInput.setText("");
 			}
 		});
 	}

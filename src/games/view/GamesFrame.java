@@ -14,6 +14,7 @@ public class GamesFrame extends JFrame
 	private GamesPanel gamesPanel;
 	private HangmanPanel hangmanPanel;
 	private SettingsPanel settingsPanel;
+	private WinPanel winPanel;
 	
 	public GamesFrame(GamesController baseController)
 	{
@@ -23,6 +24,7 @@ public class GamesFrame extends JFrame
 		gamesPanel = new GamesPanel(baseController);
 		hangmanPanel = new HangmanPanel(baseController);
 		settingsPanel = new SettingsPanel(baseController);
+		winPanel = new WinPanel(baseController);
 		setupFrame();
 	}
 	
@@ -60,6 +62,11 @@ public class GamesFrame extends JFrame
 		return settingsPanel;
 	}
 	
+	public WinPanel getWinPanel()
+	{
+		return winPanel;
+	}
+	
 	public void setHangmanPanel(HangmanPanel hangmanPanel)
 	{
 		this.hangmanPanel = hangmanPanel;
@@ -78,6 +85,11 @@ public class GamesFrame extends JFrame
 	public void setSettingsPanel(SettingsPanel settingsPanel)
 	{
 		this.settingsPanel = settingsPanel;
+	}
+	
+	public void setWinPanel(WinPanel winPanel)
+	{
+		this.winPanel = winPanel;
 	}
 	
 	public void switchScreenToGames()
@@ -108,6 +120,14 @@ public class GamesFrame extends JFrame
 	{
 		this.getContentPane();
 		this.setContentPane(settingsPanel);
+		this.validate();
+		this.repaint();
+	}
+	
+	public void switchScreenToWin()
+	{
+		this.getContentPane();
+		this.setContentPane(winPanel);
 		this.validate();
 		this.repaint();
 	}

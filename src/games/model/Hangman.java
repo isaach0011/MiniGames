@@ -52,11 +52,12 @@ public class Hangman
 		System.out.println(position);
 		System.out.println(correctLetters.size());
 		
-		
+		winGame();
 	}
-	public void addWordToFile(String word)
+	
+	public void addWordToFile(String addedWord)
 	{
-		wordList.add(word);
+		wordList.add(addedWord);
 		System.out.println(word);
 		System.out.println(wordList.size());
 	}
@@ -68,20 +69,6 @@ public class Hangman
 		return word;
 	}
 	
-	public boolean checkIfInWord(String guessedLetter)
-	{
-		int position = word.indexOf(guessedLetter);
-		
-		if(position == -1)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	
 	public ArrayList<String> getWordList()
 	{
 		return wordList;
@@ -91,5 +78,18 @@ public class Hangman
 	public void setWordList(ArrayList<String> wordList)
 	{
 		this.wordList = wordList;
+	}
+	
+	public boolean winGame()
+	{
+		if(correctLetters.size() == word.length())
+		{
+			System.out.println("you win");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

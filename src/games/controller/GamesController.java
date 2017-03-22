@@ -36,6 +36,11 @@ public class GamesController
 		}
 	}
 	
+	public void addLetterToCorrectLetterList(int letterPosition)
+	{
+		hangman.buildCorrectLettersList(letterPosition);
+	}
+	
 	public void addWord(String word)
 	{
 		if(word.contains(" ") || word.contains(".") || word.contains("-") || word.contains(","))
@@ -50,6 +55,24 @@ public class GamesController
 		}
 	}
 	
+	public int getLetterPosition(String guessedLetter)
+	{
+		int position = word.indexOf(guessedLetter);
+		
+		return position;
+	}
+	
+	public boolean winTheGame()
+	{
+		if(hangman.winGame() == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public GamesFrame getBaseFrame()
 	{
 		return baseFrame;
