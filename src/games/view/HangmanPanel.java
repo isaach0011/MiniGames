@@ -93,35 +93,7 @@ public class HangmanPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String guessLetter = hangmanInput.getText();
-				if(guessLetter.equals(""))
-				{
-					hangmanInput.setText("");
-					JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
-				}
-				else if(guessLetter.length() > 1)
-				{
-					hangmanInput.setText("");
-					JOptionPane.showMessageDialog(baseFrame, "Please type in only ONE letter.");
-				}
-				else
-				{
-				//String response = baseController.useCheckers(guessLetter);
-					if(baseController.checkIfInWord(guessLetter))
-					{
-						baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
-						hangmanInput.setText("");
-						if(baseController.winTheGame() == true)
-						{
-							baseFrame.switchScreenToSettings();
-						}
-					}
-					else
-					{
-						//put word in the incorrect text area
-					}
-				}
-				hangmanInput.setText("");
+				playGameRound();
 			}
 		});
 		
@@ -138,29 +110,43 @@ public class HangmanPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent pressedEnter)
 			{
-				String guessLetter = hangmanInput.getText();
-				if(guessLetter.equals(""))
-				{
-					hangmanInput.setText("");
-					JOptionPane.showMessageDialog(baseFrame, "Please input a letter.");
-				}
-				else
-				{
-				//String response = baseController.useCheckers(guessLetter);
-					if(baseController.checkIfInWord(guessLetter))
-					{
-						baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
-						hangmanInput.setText("");
-					}
-					else
-					{
-						//put word in the incorrect text area
-					}
-				}
-				hangmanInput.setText("");
+				playGameRound();
 			}
 		});
 	}
 	
+	public void playGameRound()
+	{
+		String guessLetter = hangmanInput.getText();
+		if(guessLetter.equals(""))
+		{
+			hangmanInput.setText("");
+			JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
+		}
+		else if(guessLetter.length() > 1)
+		{
+			hangmanInput.setText("");
+			JOptionPane.showMessageDialog(baseFrame, "Please type in only ONE letter.");
+		}
+		else
+		{
+		//String response = baseController.useCheckers(guessLetter);
+			if(baseController.checkIfInWord(guessLetter))
+			{
+				baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
+				hangmanInput.setText("");
+				if(baseController.winTheGame() == true)
+				{
+					baseFrame = baseController.getBaseFrame();
+					baseFrame.switchScreenToSettings();
+				}
+			}
+			else
+			{
+				//put word in the incorrect text area
+			}
+		}
+		hangmanInput.setText("");
+	}
 	
 }
