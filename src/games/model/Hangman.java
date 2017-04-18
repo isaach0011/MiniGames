@@ -9,14 +9,18 @@ public class Hangman
 {
 	private ArrayList<String> wordList;
 	private ArrayList<Integer> correctLetters;
+	private ArrayList<String> wordLetterList;
+	private int correctlyGuessedLetters;
 	private GamesController baseController;
 	private File file;
 	private String word;
+	
 	
 	public Hangman()
 	{
 		this.wordList = new ArrayList<String>();
 		this.correctLetters = new ArrayList<Integer>();
+		this.wordLetterList = new ArrayList<String>();
 		this.file = new File("src/games/model/files/words.txt");
 		this.buildWordList();
 	}
@@ -74,6 +78,11 @@ public class Hangman
 		return wordList;
 	}
 
+	public ArrayList<String> getWordLetterList()
+	
+	{
+		return wordLetterList;
+	}
 
 	public void setWordList(ArrayList<String> wordList)
 	{

@@ -64,14 +64,7 @@ public class GamesController
 	
 	public boolean winTheGame()
 	{
-		if(hangman.winGame() == true)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return hangman.winGame();
 	}
 	public GamesFrame getBaseFrame()
 	{
