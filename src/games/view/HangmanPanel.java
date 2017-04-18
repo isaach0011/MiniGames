@@ -138,7 +138,7 @@ public class HangmanPanel extends JPanel
 				if(baseController.winTheGame() == true)
 				{
 					baseFrame = baseController.getBaseFrame();
-					baseFrame.switchScreenToSettings();
+					baseFrame.switchScreenToWin();
 				}
 			}
 			else

@@ -32,7 +32,6 @@ public class Hangman
 	{
 		try 
 		{
-
 	        Scanner sc = new Scanner(file);
 
 	        while (sc.hasNextLine()) 
