@@ -24,21 +24,31 @@ public class GamesController
 	
 	public boolean checkIfInWord(String guessedLetter)
 	{
-		int position = word.indexOf(guessedLetter);
-		
-		if(position == -1)
-		{
-			return false;
-		}
-		else
+//		int position = word.indexOf(guessedLetter);
+//		
+//		if(position == -1)
+//		{
+//			return false;
+//		}
+//		else
+//		{
+//			return true;
+//		}
+//		
+		if(word.contains(guessedLetter))
+			
 		{
 			return true;
 		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	public void addLetterToCorrectLetterList(int letterPosition)
+	public void addToCorrectlyGuessedLetters()
 	{
-		hangman.buildCorrectLettersList(letterPosition);
+		hangman.addCorrectlyGuessedLetters();
 	}
 	
 	public void addWord(String word)

@@ -9,7 +9,6 @@ public class Hangman
 {
 	private ArrayList<String> wordList;
 	private ArrayList<Integer> correctLetters;
-	private ArrayList<String> wordLetterList;
 	private int correctlyGuessedLetters;
 	private GamesController baseController;
 	private File file;
@@ -20,7 +19,6 @@ public class Hangman
 	{
 		this.wordList = new ArrayList<String>();
 		this.correctLetters = new ArrayList<Integer>();
-		this.wordLetterList = new ArrayList<String>();
 		this.file = new File("src/games/model/files/words.txt");
 		this.buildWordList();
 	}
@@ -50,11 +48,10 @@ public class Hangman
 	    }
 	}
 
-	public void buildCorrectLettersList(int position)
+	public void addCorrectlyGuessedLetters()
 	{
-		correctLetters.add(position);
-		System.out.println(position);
-		System.out.println(correctLetters.size());
+		correctlyGuessedLetters++;
+		System.out.println(correctlyGuessedLetters);
 		
 		winGame();
 	}
@@ -77,13 +74,7 @@ public class Hangman
 	{
 		return wordList;
 	}
-
-	public ArrayList<String> getWordLetterList()
 	
-	{
-		return wordLetterList;
-	}
-
 	public void setWordList(ArrayList<String> wordList)
 	{
 		this.wordList = wordList;
@@ -91,7 +82,7 @@ public class Hangman
 	
 	public boolean winGame()
 	{
-		if(correctLetters.size() == word.length())
+		if(correctlyGuessedLetters == word.length())
 		{
 			System.out.println("you win");
 			return true;

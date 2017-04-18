@@ -133,7 +133,7 @@ public class HangmanPanel extends JPanel
 		//String response = baseController.useCheckers(guessLetter);
 			if(baseController.checkIfInWord(guessLetter))
 			{
-				baseController.addLetterToCorrectLetterList(baseController.getLetterPosition(guessLetter));
+				baseController.addToCorrectlyGuessedLetters();
 				hangmanInput.setText("");
 				if(baseController.winTheGame() == true)
 				{
