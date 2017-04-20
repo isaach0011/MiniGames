@@ -93,7 +93,9 @@ public class HangmanPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				playGameRound();
+				String guessedLetter = hangmanInput.getText();
+				baseController.playGameRound(guessedLetter);
+				hangmanInput.setText("");
 			}
 		});
 		
@@ -110,43 +112,11 @@ public class HangmanPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent pressedEnter)
 			{
-				playGameRound();
+				String guessedLetter = hangmanInput.getText();
+				baseController.playGameRound(guessedLetter);
+				hangmanInput.setText("");
 			}
 		});
-	}
-	
-	public void playGameRound()
-	{
-		String guessLetter = hangmanInput.getText();
-		if(guessLetter.equals(""))
-		{
-			hangmanInput.setText("");
-			JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
-		}
-		else if(guessLetter.length() > 1)
-		{
-			hangmanInput.setText("");
-			JOptionPane.showMessageDialog(baseFrame, "Please type in only ONE letter.");
-		}
-		else
-		{
-		//String response = baseController.useCheckers(guessLetter);
-			if(baseController.checkIfInWord(guessLetter))
-			{
-				baseController.addToCorrectlyGuessedLetters();
-				hangmanInput.setText("");
-				if(baseController.winTheGame() == true)
-				{
-					baseFrame = baseController.getBaseFrame();
-					baseFrame.switchScreenToWin();
-				}
-			}
-			else
-			{
-				//put word in the incorrect text area
-			}
-		}
-		hangmanInput.setText("");
 	}
 	
 }

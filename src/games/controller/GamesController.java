@@ -2,19 +2,21 @@ package games.controller;
 
 import javax.swing.JOptionPane;
 import games.model.*;
-import games.view.GamesFrame;
+import games.view.*;
 
 
 public class GamesController
 {
 	private GamesFrame baseFrame;
 	private Hangman hangman;
+	private HangmanPanel hangmanPanel;
 	private String word;
 	public GamesController()
 	{
 		hangman = new Hangman();
 		word = hangman.randomWord();
 		baseFrame = new GamesFrame(this);
+		hangmanPanel = new HangmanPanel(this);
 	}
 	
 	public void start()
@@ -24,25 +26,13 @@ public class GamesController
 	
 	public boolean checkIfInWord(String guessedLetter)
 	{
-//		int position = word.indexOf(guessedLetter);
-//		
-//		if(position == -1)
-//		{
-//			return false;
-//		}
-//		else
-//		{
-//			return true;
-//		}
-//		
-		if(word.contains(guessedLetter))
-			
+		if(word.indexOf(guessedLetter) < 0)
 		{
-			return true;
+			return false;
 		}
 		else
 		{
-			return false;
+			return true;
 		}
 	}
 	
@@ -70,6 +60,33 @@ public class GamesController
 		int position = word.indexOf(guessedLetter);
 		
 		return position;
+	}
+	
+	public void playGameRound(String guessedLetter)
+	{
+		if(guessedLetter.equals(""))
+		{
+			JOptionPane.showMessageDialog(baseFrame, "Please input a letter");
+		}
+		else if(guessedLetter.length() > 1)
+		{
+			JOptionPane.showMessageDialog(baseFrame, "Please type in only ONE letter.");
+		}
+		else
+		{
+			if(this.checkIfInWord(guessedLetter))
+			{
+				this.addToCorrectlyGuessedLetters();
+				if(this.winTheGame() == true)
+				{
+					baseFrame.switchScreenToWin();
+				}
+			}
+			else
+			{
+				//put word in the incorrect text area
+			}
+		}
 	}
 	
 	public boolean winTheGame()
